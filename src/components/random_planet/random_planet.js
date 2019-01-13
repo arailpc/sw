@@ -56,4 +56,5 @@ class RandomPlanet extends Component {
   }
 }
 
+
 export default RandomPlanet;
