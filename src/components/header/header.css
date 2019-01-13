@@ -1,0 +1,17 @@
+.header {
+  margin-top: 0.5rem;
+}
+
+.header h3 a {
+  color: #fff;
+}
+
+.header ul li {
+  list-style: none;
+  padding: 0.5rem;
+  margin-left: 2rem;
+}
+
+.header ul li:hover {
+  background-color: #444;
+}
