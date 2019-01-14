@@ -11,11 +11,12 @@ export default class SwapiService {
 
   getAllPeople = async () => {
     const res = await this.getResource("/people/");
-    return res.results;
+    return res.results.map(this._tranformPerson);
   };
 
-  getPerson = id => {
-    return this.getResource(`/people/${id}/`);
+  getPerson = async id => {
+    const person = await this.getResource(`/people/${id}/`);
+    return this._tranformPerson(person);
   };
 
   getAllPlanets = async () => {
@@ -49,6 +50,16 @@ export default class SwapiService {
       population: planet.population,
       rotationPeriod: planet.rotation_period,
       diameter: planet.diameter
+    };
+  };
+
+  _tranformPerson = person => {
+    return {
+      id: this._extractId(person),
+      name: person.name,
+      gender: person.gender,
+      eyeColor: person.eye_color,
+      birthYear: person.birth_year
     };
   };
 }
