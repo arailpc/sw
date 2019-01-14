@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import "./random_planet.css";
 import SwapiService from "../../service/swapi_service";
-import Spiner from "../spiner";
+import Spinner from "../spinner";
 import ErrorMessage from "../error_message";
 
 class RandomPlanet extends Component {
-
   componentDidMount() {
     this.updatePlanet();
   }
 
-    state = {
+  state = {
     planet: null,
     loading: true,
     error: false
@@ -41,13 +40,13 @@ class RandomPlanet extends Component {
   render() {
     const { planet, loading, error } = this.state;
     const hasData = !(error || loading);
-    const spiner = loading ? <Spiner /> : null;
+    const spinner = loading ? <Spinner /> : null;
     const viewPlanet = hasData ? <ViewPlanet planet={planet} /> : null;
     const errorMessage = error ? <ErrorMessage /> : null;
 
     return (
       <div className="random-planet jumbotron clearfix py-4">
-        {spiner}
+        {spinner}
         {viewPlanet}
         {errorMessage}
       </div>
