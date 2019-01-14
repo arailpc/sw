@@ -9,26 +9,20 @@ class RandomPlanet extends Component {
   }
 
   state = {
-    id: null,
-    name: null,
-    population: null,
-    rotationPeriod: null,
-    diameter: null
+    planet:null
   };
 
   swapiService = new SwapiService();
 
+  onPlanetLoad = planet => {
+    this.setState(planet);
+  };
+
   updatePlanet() {
-    const id = Math.floor(Math.random() * 25 + 1);
-    this.swapiService.getPlanet(id).then(planet => {
-      this.setState({
-        id: id,
-        name: planet.name,
-        population: planet.population,
-        rotationPeriod: planet.rotation_period,
-        diameter: planet.diameter
-      });
-    });
+    const id = Math.floor(Math.random() * 25 + 2);
+    this.swapiService
+        .getPlanet(id)
+        .then(this.onPlanetLoad);
   }
 
   render() {
@@ -61,5 +55,6 @@ class RandomPlanet extends Component {
     );
   }
 }
+
 
 export default RandomPlanet;
