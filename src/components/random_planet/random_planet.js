@@ -7,6 +7,11 @@ import ErrorMessage from "../error_message";
 class RandomPlanet extends Component {
   componentDidMount() {
     this.updatePlanet();
+    this.interval = setInterval(this.updatePlanet, 4000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   state = {
@@ -28,14 +33,14 @@ class RandomPlanet extends Component {
     });
   };
 
-  updatePlanet() {
+  updatePlanet = () => {
     const id = Math.floor(Math.random() * 25 + 2);
     // const id = 15000;
     this.swapiService
       .getPlanet(id)
       .then(this.onPlanetLoad)
       .catch(this.onErrorLoad);
-  }
+  };
 
   render() {
     const { planet, loading, error } = this.state;
