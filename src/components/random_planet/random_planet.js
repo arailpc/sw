@@ -61,6 +61,7 @@ const ViewPlanet = ({ planet }) => {
       <img
         src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
         alt=""
+        className="rounded"
       />
       <div className="float-left ml-3">
         <h4 className="mb-3">{name}</h4>
